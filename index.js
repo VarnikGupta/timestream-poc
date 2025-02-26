@@ -38,22 +38,30 @@ async function createTable() {
 }
 
 async function writeRecords() {
-    const timestamp = Date.now().toString();
+    const timestamp1 = Date.now().toString();
+    const timestamp2 = timestamp1
     const records = [
         {
             Dimensions: [{ Name: 'device_id', Value: "device1" }],
             MeasureName: 'temperature',
+            MeasureValue: '42.5',
+            MeasureValueType: 'DOUBLE',
+            Time: timestamp1
+        },
+        {
+            Dimensions: [{ Name: 'device_id', Value: "device1" }],
+            MeasureName: 'temperature',
+            MeasureValue: '2.5',
+            MeasureValueType: 'DOUBLE',
+            Time: timestamp2
+        },
+        {
+            Dimensions: [{ Name: 'device_id2', Value: "device2" }],
+            MeasureName: 'temperature',
             MeasureValue: '22.5',
             MeasureValueType: 'DOUBLE',
-            Time: timestamp
-        },
-        // {
-        //     Dimensions: [{ Name: 'device_id', Value: "device2" }],
-        //     MeasureName: 'humidity',
-        //     MeasureValue: '22.5',
-        //     MeasureValueType: 'DOUBLE',
-        //     Time: timestamp
-        // }
+            Time: timestamp1
+        }
     ];
 
     try {
@@ -82,5 +90,5 @@ async function queryRecords() {
     // await createDatabase();
     // await createTable();
     await writeRecords();
-    await queryRecords();
+    // await queryRecords();
 })();
